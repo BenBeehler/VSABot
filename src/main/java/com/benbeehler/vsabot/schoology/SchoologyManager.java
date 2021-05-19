@@ -1,6 +1,7 @@
 package com.benbeehler.vsabot.schoology;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,8 @@ import com.benbeehler.vsabot.VSABot;
 import com.benbeehler.vsabot.commands.CommandDump;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
-import com.benbeehler.vsabot.resource.Message;
+import com.benbeehler.vsabot.resource.BotStatistics;
+import com.benbeehler.vsabot.resource.MessageLib;
 import com.benbeehler.vsabot.resource.Reference;
 import com.benbeehler.vsabot.schoology.instances.Comment;
 import com.benbeehler.vsabot.schoology.instances.Discussion;
@@ -26,6 +28,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class SchoologyManager {
 
+	public static final List<Discussion> dBuffer = new ArrayList<Discussion>();
+	
 	public static void start() {
 		ProcessHandler.spawn(() -> {
 			while(true) {
@@ -46,7 +50,11 @@ public class SchoologyManager {
 							List<Comment> allcomments = CommentManager.getAllComments(discussion);
 							
 							if(allcomments.size() == 1) {
-								discussion.comment(Message.NEW_DISCUSSION_WELCOME);
+								if(discussion.getGroup().getTitle().contains("10-12")) {
+									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME_MEME);
+								} else {
+									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME);
+								}
 							}
 							
 							for(Comment comment : newcomments) {
@@ -54,6 +62,10 @@ public class SchoologyManager {
 								
 								if(!action) {
 									//The comment did not violate guidelines
+									
+									if(Reference.getLog()) {
+										DiscordCommunication.logComment(comment);
+									}
 									
 									String content = comment.getContent();
 									
@@ -119,7 +131,7 @@ public class SchoologyManager {
 		
 		/*
 		 * Bot checks for content in reverse
-		 */
+		*/
 		
 		String reversed = Parser.reverse(content);
 		String reversedImgContent = Parser.reverse(content);
@@ -127,7 +139,7 @@ public class SchoologyManager {
 		if(WordArchive.isNaughty(reversed)) {
 			euphemism = true;
 		}
-		
+			
 		if(WordArchive.isSwear(reversed)) {
 			swearing = true;
 		}
@@ -140,38 +152,58 @@ public class SchoologyManager {
 			swearing = true;
 		}
 		
+		if(comment.isMod()) {
+			BotStatistics.addTodayModComments();
+		}
+		
 		/*
 		 * 
 		 */
 		
+		if(comment.getContent().contains("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
+			comment.reply("watch out - this is a rickroll");
+		}
+		
+		/*
+		 * Log for stats
+		 */
+		BotStatistics.addTodayComments(); 
+		
+		
 		if(validateComment(comment)) {
 			if(swearing) {
+				BotStatistics.addTodaySwears();
+				
 				//swearing
 				rating = 99;
 				
-				comment.reply(Message.HARSH_COMMENT_RESPONSE);
+				comment.reply(MessageLib.HARSH_COMMENT_RESPONSE);
 				comment.delete();
 				
 				DiscordCommunication.reportComment(comment, rating, euphemism, swearing);
 				
 				return true;
 			} else if(euphemism) {
+				BotStatistics.addTodayEuphemisms();
+				
 				//euphemism
 				rating = 90;
 				
-				comment.reply(Message.EUPHEMISM_RESPONSE);
+				comment.reply(MessageLib.EUPHEMISM_RESPONSE);
 				
 				DiscordCommunication.reportComment(comment, rating, euphemism, swearing);
 				
 				return true;
 			} else if(report) {
+				BotStatistics.addTodayReports();
+				
 				//report to the moderators
 				
 				//If the comment rating is > 70, report. If it > 90, respond to student.
 				DiscordCommunication.reportComment(comment, rating, euphemism, swearing);
 				
 				if(respond) {
-					comment.reply(Message.MODERATE_COMMENT_RESPONSE);
+					comment.reply(MessageLib.MODERATE_COMMENT_RESPONSE);
 				}
 				
 				return true;
@@ -220,12 +252,7 @@ public class SchoologyManager {
 	
 	public static void enableAll() {
 		ProcessHandler.spawn(() -> {
-			String[] urls = new String[] {
-				"https://scholars.veritaspress.com/group/2187291458/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187291121/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187290897/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187289943/edit/privacy"
-			};
+			String[] urls = Reference.PRIVACY_URLS;
 			
 			for(String url : urls) {
 				try {
@@ -241,12 +268,7 @@ public class SchoologyManager {
 	
 	public static void disableAll() {
 		ProcessHandler.spawn(() -> {
-			String[] urls = new String[] {
-				"https://scholars.veritaspress.com/group/2187291458/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187291121/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187290897/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187289943/edit/privacy"
-			};
+			String[] urls = Reference.PRIVACY_URLS;
 			
 			for(String url : urls) {
 				try {
@@ -262,12 +284,7 @@ public class SchoologyManager {
 	
 	public static void openAll() {
 		ProcessHandler.spawn(() -> {
-			String[] urls = new String[] {
-				"https://scholars.veritaspress.com/group/2187291458/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187291121/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187290897/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187289943/edit/privacy"
-			};
+			String[] urls = Reference.PRIVACY_URLS;
 			
 			for(String url : urls) {
 				try {
@@ -283,12 +300,7 @@ public class SchoologyManager {
 	
 	public static void closeAll() {
 		ProcessHandler.spawn(() -> {
-			String[] urls = new String[] {
-				"https://scholars.veritaspress.com/group/2187291458/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187291121/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187290897/edit/privacy",
-				"https://scholars.veritaspress.com/group/2187289943/edit/privacy"
-			};
+			String[] urls = Reference.PRIVACY_URLS;
 			
 			for(String url : urls) {
 				try {

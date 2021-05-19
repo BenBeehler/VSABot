@@ -7,34 +7,27 @@ import com.benbeehler.vsabot.commands.instances.ChatCommand;
 import com.benbeehler.vsabot.resource.BotScheduler;
 import com.benbeehler.vsabot.schoology.SchoologyManager;
 
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.EventListener;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class CommandListener extends ListenerAdapter implements EventListener {
+public class CommandListener extends ListenerAdapter {
 
 	/*
 	 * Listener systems are tight
 	 */
 	
+
 	@Override
-    public void onReady(ReadyEvent event) {
-		event.getJDA().getPresence().setGame(Game.playing("VSABot 2.x | Veritas Press"));
-		
-		System.out.println("VSABot's discord processes are initialized. Starting Schoology processes.");
-			
-		SchoologyManager.start();
-		BotScheduler.beginScheduler();
-    }
-	
-	@Override
-	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+	public void onMessageReceived(MessageReceivedEvent event) {		
 		String message = event.getMessage().getContentStripped();
 				
-		if(message.startsWith("vsabot")) {
-			message = message.replaceFirst("vsabot", "").trim();
+		if(message.startsWith("vsabot ")) {
+			message = message.replaceFirst("vsabot ", "").trim();
 			
 			/*
 			 * VSABot has received a new incoming command on discord.

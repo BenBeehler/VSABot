@@ -14,6 +14,7 @@ public class Comment {
 	private String html;
 	private boolean isMod;
 	private Comment parent;
+	private String img = "https://asset-cdn.schoology.com/system/files/imagecache/profile_reg/pictures/picture-577e3d5169ec7ca5768229c27815d031_5d2e919bbe651.png?1563333019";
 	
 	public Comment(String html, String id, String content, String author, String time, Discussion discussion, Group group, boolean isMod, Comment parent) {
 		this.html = html;
@@ -33,6 +34,14 @@ public class Comment {
 	
 	public void delete() throws UnirestException {
 		VSABot.getAPI().delete(this.id);
+	}
+	
+	public void setAuthorPFP(String img) {
+		this.img = img;
+	}
+	
+	public String getAuthorPFP() {
+		return this.img;
 	}
 	
 	public String getId() {

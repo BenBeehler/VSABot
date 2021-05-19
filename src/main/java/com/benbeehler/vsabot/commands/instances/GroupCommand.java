@@ -1,20 +1,25 @@
 package com.benbeehler.vsabot.commands.instances;
 
+import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
+import com.benbeehler.vsabot.resource.ChannelHandler;
 import com.benbeehler.vsabot.resource.Reference;
+import com.benbeehler.vsabot.schoology.CommentManager;
 import com.benbeehler.vsabot.schoology.DiscussionManager;
 import com.benbeehler.vsabot.schoology.GroupManager;
 import com.benbeehler.vsabot.schoology.SchoologyManager;
 import com.benbeehler.vsabot.schoology.instances.Discussion;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.api.entities.MessageChannel;
+
 
 public class GroupCommand extends Command {
 
@@ -28,7 +33,7 @@ public class GroupCommand extends Command {
 				if(Reference.canExecute(info.getEvent().getMember())) {
 					//check user permissions
 					
-					TextChannel channel = info.getEvent().getChannel();
+					MessageChannel channel = info.getEvent().getChannel();
 					
 					if(params.size() >= 2) {
 						String mode = params.get(0);
@@ -45,7 +50,15 @@ public class GroupCommand extends Command {
 						 */
 						
 						try {
-							if(mode.equalsIgnoreCase("enable")) {
+							if(mode.equalsIgnoreCase("log") && group.equalsIgnoreCase("toggle")) {
+								Reference.toggleLog();
+								
+								if(Reference.getLog()) {
+									info.getEvent().getChannel().sendMessage("VSABot will now log every new comment.").complete();
+								} else {
+									info.getEvent().getChannel().sendMessage("VSABot will stop logging every new comment.").complete();
+								}
+							} else if(mode.equalsIgnoreCase("enable")) {
 								switch(group) {
 									case "3-5":
 										SchoologyManager.enableNewDiscussions(Reference.GROUP1_PRIVACY);
@@ -149,7 +162,7 @@ public class GroupCommand extends Command {
 										channel.sendMessage("Invalid `group` parameter.").complete();
 										break;
 								}
-							} else if(mode.equalsIgnoreCase("get")) {
+							} else if(mode.equalsIgnoreCase("list")) {
 								if(params.size() >= 3) {
 									String title = parametersString.replaceFirst(params.get(0), "")
 											.replaceFirst(params.get(1), "").trim();
@@ -171,28 +184,76 @@ public class GroupCommand extends Command {
 										case "10-12":
 											groupLink = Reference.GROUP4;
 											break;
+										case "all":
+											groupLink = "all";
+											break;
 										default:
 											channel.sendMessage("Invalid `group` parameter.").complete();
 											break;
 									}
 									
 									if(groupLink != null) {
-										//Get all matching discussions
-										List<Discussion> discussions = DiscussionManager
-											.getAllDiscussions(GroupManager.getGroup(groupLink));
-										List<Discussion> applicable = discussions.stream().filter(discussion -> discussion.getTitle()
-												.toLowerCase().contains(title.toLowerCase())).collect(Collectors.toList());
+										List<Discussion> applicable = new ArrayList<>();
 										
-										info.getEvent().getChannel().sendMessage("Matching discussions on " + group + ":").complete();
+										//Get all matching discussions
+										if(groupLink.equalsIgnoreCase("all")) {
+											 applicable.addAll(DiscussionManager
+												.getAllDiscussions(GroupManager.getGroup(Reference.GROUP1)));
+											 applicable.addAll(DiscussionManager
+														.getAllDiscussions(GroupManager.getGroup(Reference.GROUP2)));
+											 applicable.addAll(DiscussionManager
+														.getAllDiscussions(GroupManager.getGroup(Reference.GROUP3)));
+											 applicable.addAll(DiscussionManager
+														.getAllDiscussions(GroupManager.getGroup(Reference.GROUP4)));
+											 
+											 SchoologyManager.dBuffer.addAll(applicable);
+										} else {
+											List<Discussion> discussions = DiscussionManager
+												.getAllDiscussions(GroupManager.getGroup(groupLink));
+											applicable = discussions.stream().filter(discussion -> discussion.getTitle()
+													.toLowerCase().contains(title.toLowerCase())).collect(Collectors.toList());
+											
+											SchoologyManager.dBuffer.addAll(applicable);
+										}
+										
+										info.getEvent().getChannel().sendMessage("Calculating....").queue();
+										
+										StringBuilder sb = new StringBuilder();
+										
 										applicable.forEach(discussion -> {
-											info.getEvent().getChannel().sendMessage("`" + discussion.getTitle() + "`").complete();
+											//info.getEvent().getChannel().sendMessage("`" + discussion.getTitle() + "`").complete();
+											
+											sb.append(discussion.getTitle() + " - " + discussion.getGroup().getTitle() + "\n\n");
 										});
+										
+										int x = 0;
+										for(int i = 0; i < sb.toString().length(); i+=2040) {
+											ChannelHandler.sendEmbeded(info.getEvent().getChannel(), sb.toString().substring(x, i) + "...", Color.DARK_GRAY);	
+											x = i;
+										}										
 									}
 								} else {
 									
 								}
+							} else if(mode.equalsIgnoreCase("buffer")) {
+								if(group.equalsIgnoreCase("info")) {
+									int sum = 0;
+									String g = "";
+									for(Discussion d : SchoologyManager.dBuffer) {
+										g = d.getGroup().getTitle();
+										sum+=CommentManager.getAllComments(d).size();
+										Thread.sleep(500);
+									}
+									
+									String response = ", this comment may violate discussion guidelines.\n"
+											+ "**Discussions**: " + SchoologyManager.dBuffer.size() + "\n"
+											+ "**Sum of comments**: " + sum + "\n"
+											+ "**Group**: " + g;
+									
+									Reference.getUpdatesChannel().sendMessage(response).complete();
+								}
 							}
-						} catch(UnirestException | IOException e) {
+						} catch(UnirestException | IOException | InterruptedException e) {
 							e.printStackTrace();
 						}
 					} else {

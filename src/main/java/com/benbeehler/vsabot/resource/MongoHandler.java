@@ -30,13 +30,13 @@ public class MongoHandler {
 	}
 	
 	public static MongoClient getClient() {
-		MongoClientURI uri = new MongoClientURI(Reference.getConnectionURI()); 
+		MongoClientURI uri = new MongoClientURI("mongodb+srv://root:rootpassword@cluster0.stbdo.mongodb.net/main?retryWrites=true&w=majority"); 
 		MongoClient client = new MongoClient(uri); 
 		return client;
 	}
 	
 	public static Document getConfig() {
-		MongoDatabase database = getClient().getDatabase("vsabot");   
+		MongoDatabase database = getClient().getDatabase("main");   
 	    MongoCollection<Document> collection = database.getCollection("config");
 	    
 	    FindIterable<Document> docList = collection.find();

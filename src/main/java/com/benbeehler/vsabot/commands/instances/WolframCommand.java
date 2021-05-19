@@ -18,18 +18,16 @@ public class WolframCommand extends Command {
 		this.runnable = () -> {
 			String response = WolframAPI.query(parametersString);
 			
-			response = response.replaceAll("<b>", "**").replaceAll("</b>", "**").replaceAll("<br>", "\n");
+			String discordResponse = response.replaceAll("<b>", "**").replaceAll("</b>", "**").replaceAll("<br>", "\n");
 			
-			if(response.length() >= 1990)
-				response = response.substring(0, 1990).trim() + "...";
-			
-			System.out.println(String.valueOf(info.getEvent() == null));
+			if(discordResponse.length() >= 1990)
+				discordResponse = discordResponse.substring(0, 1990).trim() + "...";
 			
 			if(info.getType().equals(CommandType.DISCORD)) {
-				event.getChannel().sendMessage(response).complete();
+				info.getEvent().getChannel().sendMessage(discordResponse).complete();
 			} else if(info.getType().equals(CommandType.SCHOOLOGY)) {
 				try {
-					info.getComment().reply("Wolfram Alpha is not functional yet.");
+					info.getComment().reply(response);
 				} catch (UnirestException e) {
 					e.printStackTrace();
 				}

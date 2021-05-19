@@ -38,6 +38,8 @@ public class PerspectiveAPI {
 	}
 	
 	public static double rate(String message) throws IOException {
+		message = message.replaceAll("spicy", "").replaceAll("spiciness", "");
+		
 		JSONObject res = evaluate(message);
 		//get JSONObject with body
 		try {

@@ -7,7 +7,7 @@ import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class PingCommand extends Command {
 
@@ -24,7 +24,7 @@ public class PingCommand extends Command {
 					e.printStackTrace();
 				}
 			} else {
-				TextChannel channel = info.getEvent().getChannel();
+				MessageChannel channel = info.getEvent().getChannel();
 				channel.sendMessage("Pong!").complete();
 			}
 		};

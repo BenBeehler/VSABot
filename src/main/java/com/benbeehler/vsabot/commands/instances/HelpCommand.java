@@ -5,7 +5,7 @@ import java.util.List;
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
-import com.benbeehler.vsabot.resource.Message;
+import com.benbeehler.vsabot.resource.MessageLib;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class HelpCommand extends Command {
@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
 		this.runnable = () -> {
 			if(info.getType().equals(CommandType.SCHOOLOGY)) {
 				try {
-					info.getComment().reply(Message.HELP_MESSAGE);
+					info.getComment().reply(MessageLib.HELP_MESSAGE);
 				} catch (UnirestException e) {
 					e.printStackTrace();
 				}

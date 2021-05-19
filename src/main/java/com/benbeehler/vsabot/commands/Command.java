@@ -3,7 +3,7 @@ package com.benbeehler.vsabot.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Command {
 	
@@ -21,7 +21,7 @@ public class Command {
 	protected String prefix; 
 	protected Runnable runnable = () -> { /* empty by default */ };
 	protected List<String> parameters = new ArrayList<>();
-	protected GuildMessageReceivedEvent event;
+	protected MessageReceivedEvent  event;
 	protected CommandInformation info;
 	protected String parametersString;
 	

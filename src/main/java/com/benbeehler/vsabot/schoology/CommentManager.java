@@ -48,6 +48,13 @@ public class CommentManager {
 		
 		final Document doc = Jsoup.parse(html);
 		
+		String pfpImg = "";
+		
+		Elements e = doc.getElementsByClass("imagecache");
+		if(e.size() > 0) {
+			pfpImg = e.get(0).attr("src");
+		}
+		
 		boolean isMod = doc.getElementsByClass("is-admin").size() > 0;
 		
 		content = Parser.purify(content);
@@ -66,10 +73,16 @@ public class CommentManager {
 		if(optional.isPresent()) {
 			Element masterElement = optional.get();
 			
-			parent = CommentManager.getComment(masterElement, discussion);
+			if(masterElement.html().trim() != html.trim()) {
+				//avoid unnecessary recursion
+				//parent = CommentManager.getComment(masterElement, discussion);
+			}
 		}
 		
-		return new Comment(html, id, content, author, time, discussion, discussion.getGroup(), isMod, parent);
+		Comment comment = new Comment(html, id, content, author, time, discussion, discussion.getGroup(), isMod, parent);
+		comment.setAuthorPFP(pfpImg);
+		
+		return comment;
 	}
 	
 	public static List<Comment> getNewComments(Discussion discussion) throws IOException {

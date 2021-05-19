@@ -10,10 +10,12 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.benbeehler.vsabot.VSABot;
+import com.benbeehler.vsabot.utilities.Parser;
 
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
+
 import okhttp3.MediaType;
 
 public class Reference {
@@ -33,18 +35,18 @@ public class Reference {
 	public static final String HOME_URL = "https://scholars.veritaspress.com/";
 	
 	public static final String TEST_GROUP = "http://scholars.veritaspress.com/group/2057296450/discussion";
-	public static final String GROUP1 = "https://scholars.veritaspress.com/group/2187289943/discussion"; //3-5
-	public static final String GROUP2 = "https://scholars.veritaspress.com/group/2187290897/discussion"; //6-7
-	public static final String GROUP3 = "https://scholars.veritaspress.com/group/2187291121/discussion"; //8-9
-	public static final String GROUP4 = "https://scholars.veritaspress.com/group/2187291458/discussion"; //10-12
+	public static final String GROUP1 = "https://scholars.veritaspress.com/group/2897283446/discussion"; //3-5
+	public static final String GROUP2 = "https://scholars.veritaspress.com/group/2897263775/discussion"; //6-7
+	public static final String GROUP3 = "https://scholars.veritaspress.com/group/2897218717/discussion"; //8-9
+	public static final String GROUP4 = "https://scholars.veritaspress.com/group/2897185682/discussion"; //10-12
 	
-	public static final String GROUP1_PRIVACY = "https://scholars.veritaspress.com/group/2187289943/edit/privacy";
-	public static final String GROUP2_PRIVACY = "https://scholars.veritaspress.com/group/2187290897/edit/privacy";
-	public static final String GROUP3_PRIVACY = "https://scholars.veritaspress.com/group/2187291121/edit/privacy";
-	public static final String GROUP4_PRIVACY = "https://scholars.veritaspress.com/group/2187291458/edit/privacy";
+	public static final String GROUP1_PRIVACY = "https://scholars.veritaspress.com/group/2897283446/edit/privacy";
+	public static final String GROUP2_PRIVACY = "https://scholars.veritaspress.com/group/2897263775/edit/privacy";
+	public static final String GROUP3_PRIVACY = "https://scholars.veritaspress.com/group/2897218717/edit/privacy";
+	public static final String GROUP4_PRIVACY = "https://scholars.veritaspress.com/group/2897185682/edit/privacy";
 		
-	public static final String SERVER_ID = "605431943147814912";
-	public static final String CHANNEL_ID = "653805812023689231";
+	public static final String SERVER_ID = "705066534904791051";
+	public static final String CHANNEL_ID = "705066536263745572";
 	
 	public static final String GSD1_ID = "605437389778976770";
 	public static final String GSD2_ID = "605437389778976770";
@@ -53,7 +55,9 @@ public class Reference {
 	
 	public static final String ACCOUNT_NAME = "Click to";
 	
-	public static final String VERSION = "Version 2.0.5";
+	public static final String VERSION = "Version 2.2.3";
+	
+	private static boolean log = false;
 	
 	public static List<String> DISCORD_ADMINS = Arrays.asList(new String[] {
 			"291308460405161984",
@@ -61,6 +65,13 @@ public class Reference {
 			"520348027458682901",
 			"605436948986986511"
 	}); 
+	
+	public static String[] PRIVACY_URLS = new String[] {
+			"https://scholars.veritaspress.com/group/2897185682/edit/privacy",
+			"https://scholars.veritaspress.com/group/2897218717/edit/privacy",
+			"https://scholars.veritaspress.com/group/2897263775/edit/privacy",
+			"https://scholars.veritaspress.com/group/2897283446/edit/privacy"
+	};
 	
 	public static boolean DISABLED = false;
 	
@@ -104,6 +115,8 @@ public class Reference {
 
 	private static JSONObject getConfig() {
 		if(config == null) {
+			//File file = new File("./config.json");
+			
 			File file = new File("./config.json");
 			
 			try {
@@ -126,6 +139,26 @@ public class Reference {
 		}
 		
 		return config;
+	}
+	
+	public static void toggleLog() {
+		log = !log;
+	}
+	
+	public static boolean getLog() {
+		return log;
+	}
+	
+	public static String[] getEuphemisms() {
+		return Parser.getStringArray(getConfig().getJSONArray("euphemisms"));
+	}
+	
+	public static String[] getSwear() {
+		return Parser.getStringArray(getConfig().getJSONArray("swearwords"));
+	}
+	
+	public static String[] getExceptions() {
+		return Parser.getStringArray(getConfig().getJSONArray("exceptions"));
 	}
 	
 	public static String getBotToken() {

@@ -4,14 +4,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.benbeehler.vsabot.resource.MongoHandler;
+import com.benbeehler.vsabot.resource.Reference;
 
 public class WordArchive {
 
 	//list of euphemisms
-	public static final String[] NAUGHTY = MongoHandler.getList("euphemisms");
+	public static final String[] NAUGHTY = Reference.getEuphemisms();
 	
 	//list of swear words
-	public static final String[] SWEAR = MongoHandler.getList("swearwords");
+	public static final String[] SWEAR = Reference.getSwear();
+	
+	//list of swear words
+	public static final String[] EXCEPTIONS = Reference.getExceptions();
 	
 	public static final String[] REDUNDANT = new String[] {
 		"me",
@@ -59,10 +63,8 @@ public class WordArchive {
 			
 			Matcher m = p.matcher(query);
 			boolean conditionOne = m.find();
-			String newquery = query.replace(" ", "").replace(".", "");
-			boolean conditionTwo = newquery.contains(bad);
 			
-			if(conditionOne && conditionTwo) {
+			if(conditionOne) {
 				return true;
 			}
 		}
