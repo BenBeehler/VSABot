@@ -1,14 +1,11 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.List;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.benbeehler.vsabot.resource.BotScheduler;
-import com.benbeehler.vsabot.utilities.Parser;
+
+import java.util.List;
 
 public class CheckCommand extends Command {
 

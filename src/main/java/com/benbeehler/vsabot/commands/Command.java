@@ -1,9 +1,9 @@
 package com.benbeehler.vsabot.commands;
 
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Command {
 	

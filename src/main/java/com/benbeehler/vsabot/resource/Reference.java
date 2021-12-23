@@ -1,22 +1,19 @@
 package com.benbeehler.vsabot.resource;
 
+import com.benbeehler.vsabot.VSABot;
+import com.benbeehler.vsabot.utilities.Parser;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
+import okhttp3.MediaType;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
-import org.json.JSONObject;
-
-import com.benbeehler.vsabot.VSABot;
-import com.benbeehler.vsabot.utilities.Parser;
-
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.User;
-
-import okhttp3.MediaType;
 
 public class Reference {
 
@@ -34,16 +31,16 @@ public class Reference {
 	public static final String LOGIN_URL = "https://resource3.veritaspress.com/theHub/remoteLogin/login.php";
 	public static final String HOME_URL = "https://scholars.veritaspress.com/";
 	
-	public static final String TEST_GROUP = "http://scholars.veritaspress.com/group/2057296450/discussion";
-	public static final String GROUP1 = "https://scholars.veritaspress.com/group/2897283446/discussion"; //3-5
-	public static final String GROUP2 = "https://scholars.veritaspress.com/group/2897263775/discussion"; //6-7
-	public static final String GROUP3 = "https://scholars.veritaspress.com/group/2897218717/discussion"; //8-9
-	public static final String GROUP4 = "https://scholars.veritaspress.com/group/2897185682/discussion"; //10-12
+	public static final String TEST_GROUP = "https://scholars.veritaspress.com/group/2057296450/discussion";
+	public static final String GROUP1 = "https://scholars.veritaspress.com/group/5230084954/discussion"; //3-5
+	public static final String GROUP2 = "https://scholars.veritaspress.com/group/5230091900/discussion"; //6-7
+	public static final String GROUP3 = "https://scholars.veritaspress.com/group/5230097490/discussion"; //8-9
+	public static final String GROUP4 = "https://scholars.veritaspress.com/group/5230103648/discussion"; //10-12
 	
-	public static final String GROUP1_PRIVACY = "https://scholars.veritaspress.com/group/2897283446/edit/privacy";
-	public static final String GROUP2_PRIVACY = "https://scholars.veritaspress.com/group/2897263775/edit/privacy";
-	public static final String GROUP3_PRIVACY = "https://scholars.veritaspress.com/group/2897218717/edit/privacy";
-	public static final String GROUP4_PRIVACY = "https://scholars.veritaspress.com/group/2897185682/edit/privacy";
+	public static final String GROUP1_PRIVACY = "https://scholars.veritaspress.com/group/5230084954/edit/privacy";
+	public static final String GROUP2_PRIVACY = "https://scholars.veritaspress.com/group/5230091900/edit/privacy";
+	public static final String GROUP3_PRIVACY = "https://scholars.veritaspress.com/group/5230097490/edit/privacy";
+	public static final String GROUP4_PRIVACY = "https://scholars.veritaspress.com/group/5230103648/edit/privacy";
 		
 	public static final String SERVER_ID = "705066534904791051";
 	public static final String CHANNEL_ID = "705066536263745572";
@@ -61,16 +58,16 @@ public class Reference {
 	
 	public static List<String> DISCORD_ADMINS = Arrays.asList(new String[] {
 			"291308460405161984",
-			"607987019129290783",
-			"520348027458682901",
-			"605436948986986511"
+			"873085731306889226",
+			"608072618121101342",
+			"875452014576926720"
 	}); 
 	
 	public static String[] PRIVACY_URLS = new String[] {
-			"https://scholars.veritaspress.com/group/2897185682/edit/privacy",
-			"https://scholars.veritaspress.com/group/2897218717/edit/privacy",
-			"https://scholars.veritaspress.com/group/2897263775/edit/privacy",
-			"https://scholars.veritaspress.com/group/2897283446/edit/privacy"
+			"https://scholars.veritaspress.com/group/5230084954/edit/privacy",
+			"https://scholars.veritaspress.com/group/5230091900/edit/privacy",
+			"https://scholars.veritaspress.com/group/5230097490/edit/privacy",
+			"https://scholars.veritaspress.com/group/5230103648/edit/privacy"
 	};
 	
 	public static boolean DISABLED = false;

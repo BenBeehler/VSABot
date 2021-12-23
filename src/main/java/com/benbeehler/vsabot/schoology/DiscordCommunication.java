@@ -1,10 +1,10 @@
 package com.benbeehler.vsabot.schoology;
 
-import java.awt.Color;
-
 import com.benbeehler.vsabot.resource.ChannelHandler;
 import com.benbeehler.vsabot.resource.Reference;
 import com.benbeehler.vsabot.schoology.instances.Comment;
+
+import java.awt.*;
 
 public class DiscordCommunication {
 

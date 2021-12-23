@@ -1,13 +1,12 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.util.List;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
 import net.dv8tion.jda.api.entities.MessageChannel;
+
+import java.util.List;
 
 public class PingCommand extends Command {
 

@@ -1,22 +1,11 @@
 package com.benbeehler.vsabot;
 
-import java.io.IOException;
-import java.text.ParseException;
-
-import javax.security.auth.login.LoginException;
-
 import com.benbeehler.schoologyapi.SchoologyAPI;
 import com.benbeehler.vsabot.commands.CommandListener;
 import com.benbeehler.vsabot.resource.BotScheduler;
-import com.benbeehler.vsabot.resource.MongoHandler;
 import com.benbeehler.vsabot.resource.Reference;
-import com.benbeehler.vsabot.schoology.DiscussionManager;
-import com.benbeehler.vsabot.schoology.GroupManager;
 import com.benbeehler.vsabot.schoology.SchoologyManager;
-import com.benbeehler.vsabot.schoology.instances.Group;
-import com.benbeehler.vsabot.utilities.Parser;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -24,6 +13,8 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
+
+import javax.security.auth.login.LoginException;
 
 
 /**

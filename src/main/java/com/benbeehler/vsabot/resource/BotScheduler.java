@@ -1,13 +1,12 @@
 package com.benbeehler.vsabot.resource;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.time.LocalDateTime;
-
-import com.benbeehler.vsabot.VSABot;
 import com.benbeehler.vsabot.schoology.SchoologyManager;
 import com.benbeehler.vsabot.utilities.Parser;
 import com.benbeehler.vsabot.utilities.ProcessHandler;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 
 public class BotScheduler {
 

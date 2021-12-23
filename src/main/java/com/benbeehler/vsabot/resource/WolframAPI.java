@@ -1,12 +1,6 @@
 package com.benbeehler.vsabot.resource;
 
-import com.wolfram.alpha.WAEngine;
-import com.wolfram.alpha.WAException;
-import com.wolfram.alpha.WAPlainText;
-import com.wolfram.alpha.WAPod;
-import com.wolfram.alpha.WAQuery;
-import com.wolfram.alpha.WAQueryResult;
-import com.wolfram.alpha.WASubpod;
+import com.wolfram.alpha.*;
 
 public class WolframAPI {
 

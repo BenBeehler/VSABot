@@ -1,11 +1,5 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.awt.Color;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
@@ -17,8 +11,13 @@ import com.benbeehler.vsabot.schoology.GroupManager;
 import com.benbeehler.vsabot.schoology.SchoologyManager;
 import com.benbeehler.vsabot.schoology.instances.Discussion;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
 import net.dv8tion.jda.api.entities.MessageChannel;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class GroupCommand extends Command {

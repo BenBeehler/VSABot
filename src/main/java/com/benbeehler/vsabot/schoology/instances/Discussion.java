@@ -1,9 +1,9 @@
 package com.benbeehler.vsabot.schoology.instances;
 
-import java.io.IOException;
-
 import com.benbeehler.vsabot.VSABot;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.io.IOException;
 
 public class Discussion {
 

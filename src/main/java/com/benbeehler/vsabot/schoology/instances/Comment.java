@@ -1,5 +1,4 @@
 package com.benbeehler.vsabot.schoology.instances;
-
 import com.benbeehler.vsabot.VSABot;
 import com.mashape.unirest.http.exceptions.UnirestException;
 

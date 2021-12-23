@@ -1,13 +1,5 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
@@ -15,10 +7,13 @@ import com.benbeehler.vsabot.resource.Reference;
 import com.benbeehler.vsabot.schoology.CommentManager;
 import com.benbeehler.vsabot.schoology.DiscussionManager;
 import com.benbeehler.vsabot.schoology.GroupManager;
+import com.benbeehler.vsabot.schoology.instances.Comment;
 import com.benbeehler.vsabot.schoology.instances.Discussion;
 import com.benbeehler.vsabot.schoology.instances.Group;
-import com.benbeehler.vsabot.schoology.instances.Comment;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.io.IOException;
+import java.util.*;
 
 public class ChatCommand extends Command {
 

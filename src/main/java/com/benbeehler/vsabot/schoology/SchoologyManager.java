@@ -1,14 +1,5 @@
 package com.benbeehler.vsabot.schoology;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import com.benbeehler.vsabot.VSABot;
 import com.benbeehler.vsabot.commands.CommandDump;
 import com.benbeehler.vsabot.commands.CommandInformation;
@@ -25,6 +16,14 @@ import com.benbeehler.vsabot.utilities.ProcessHandler;
 import com.benbeehler.vsabot.utilities.WordArchive;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class SchoologyManager {
 

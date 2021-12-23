@@ -1,12 +1,12 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.util.List;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.benbeehler.vsabot.resource.WolframAPI;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.util.List;
 
 public class WolframCommand extends Command {
 

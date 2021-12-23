@@ -1,7 +1,6 @@
 package com.benbeehler.vsabot.commands;
 
 import com.benbeehler.vsabot.schoology.instances.Comment;
-
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class CommandInformation {

@@ -1,18 +1,17 @@
 package com.benbeehler.vsabot.utilities;
 
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+import org.json.JSONArray;
+import org.jsoup.Jsoup;
+
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
-import org.apache.commons.net.ntp.NTPUDPClient;
-import org.apache.commons.net.ntp.TimeInfo;
-import org.json.JSONArray;
-import org.jsoup.Jsoup;
 
 public class Parser {
 

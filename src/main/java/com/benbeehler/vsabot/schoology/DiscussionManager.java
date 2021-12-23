@@ -1,19 +1,18 @@
 package com.benbeehler.vsabot.schoology;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import com.benbeehler.vsabot.VSABot;
 import com.benbeehler.vsabot.schoology.instances.Discussion;
 import com.benbeehler.vsabot.schoology.instances.Group;
 import com.benbeehler.vsabot.utilities.Parser;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DiscussionManager {
 

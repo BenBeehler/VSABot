@@ -1,22 +1,21 @@
 package com.benbeehler.vsabot.schoology;
 
+import com.benbeehler.vsabot.resource.OCRAPI;
+import com.benbeehler.vsabot.schoology.instances.Comment;
+import com.benbeehler.vsabot.schoology.instances.Discussion;
+import com.benbeehler.vsabot.utilities.Parser;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import com.benbeehler.vsabot.resource.OCRAPI;
-import com.benbeehler.vsabot.schoology.instances.Comment;
-import com.benbeehler.vsabot.schoology.instances.Discussion;
-import com.benbeehler.vsabot.utilities.Parser;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class CommentManager {
 

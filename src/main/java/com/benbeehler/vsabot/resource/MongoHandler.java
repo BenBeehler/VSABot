@@ -1,16 +1,15 @@
 package com.benbeehler.vsabot.resource;
 
-import java.util.Iterator;
-
-import org.bson.Document;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 public class MongoHandler {
 

@@ -1,10 +1,9 @@
 package com.benbeehler.vsabot.utilities;
 
+import com.benbeehler.vsabot.resource.Reference;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.benbeehler.vsabot.resource.MongoHandler;
-import com.benbeehler.vsabot.resource.Reference;
 
 public class WordArchive {
 

@@ -1,13 +1,13 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.awt.Color;
-import java.util.List;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.benbeehler.vsabot.resource.BotStatistics;
 import com.benbeehler.vsabot.resource.ChannelHandler;
+
+import java.awt.*;
+import java.util.List;
 
 public class StatisticsCommand extends Command {
 

@@ -1,16 +1,14 @@
 package com.benbeehler.vsabot.utilities;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.benbeehler.vsabot.resource.Reference;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class PerspectiveAPI {
 

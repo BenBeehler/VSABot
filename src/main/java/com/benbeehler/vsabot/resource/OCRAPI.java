@@ -1,9 +1,8 @@
 package com.benbeehler.vsabot.resource;
 
-import org.json.JSONObject;
-
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
 
 public class OCRAPI {
 

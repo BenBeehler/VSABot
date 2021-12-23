@@ -1,13 +1,13 @@
 package com.benbeehler.vsabot.commands.instances;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.benbeehler.vsabot.commands.Command;
 import com.benbeehler.vsabot.commands.CommandInformation;
 import com.benbeehler.vsabot.commands.CommandType;
 import com.benbeehler.vsabot.resource.BibleAPI;
 import com.mashape.unirest.http.exceptions.UnirestException;
+
+import java.io.IOException;
+import java.util.List;
 
 public class VerseCommand extends Command {
 

@@ -1,19 +1,11 @@
 package com.benbeehler.vsabot.commands;
 
+import com.benbeehler.vsabot.commands.instances.ChatCommand;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
 import java.util.Arrays;
 import java.util.List;
-
-import com.benbeehler.vsabot.commands.instances.ChatCommand;
-import com.benbeehler.vsabot.resource.BotScheduler;
-import com.benbeehler.vsabot.schoology.SchoologyManager;
-
-import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.events.GenericEvent;
-import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.EventListener;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class CommandListener extends ListenerAdapter {
 
