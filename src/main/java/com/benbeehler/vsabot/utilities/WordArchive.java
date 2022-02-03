@@ -41,7 +41,8 @@ public class WordArchive {
 	}
 
 	//check and see if euphemism is present
-	public static boolean isNaughty(String query) {
+	
+	/* public static boolean isNaughty(String query) {
 		query = query.toLowerCase();
 		for(String bad : NAUGHTY) {
 			Pattern p = Pattern.compile(regexify(bad));
@@ -52,8 +53,9 @@ public class WordArchive {
 		}
 		
 		return false;
-	}
 	
+	}
+	*/
 	public static boolean isSwear(String query) {
 		query = query.toLowerCase();
 		for(String bad : SWEAR) {
