@@ -50,7 +50,7 @@ public class SchoologyManager {
 							
 							if(allcomments.size() == 1) {
 								if(discussion.getGroup().getTitle().contains("10-12")) {
-									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME_MEME);
+									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME);  //took out MEME
 								} else {
 									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME);
 								}
