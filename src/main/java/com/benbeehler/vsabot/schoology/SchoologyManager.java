@@ -48,12 +48,12 @@ public class SchoologyManager {
 							List<Comment> newcomments = CommentManager.getNewComments(discussion);
 							List<Comment> allcomments = CommentManager.getAllComments(discussion);
 							
-							if(allcomments.size() == 1) {
+							/* if(allcomments.size() == 1) {
 								if(discussion.getGroup().getTitle().contains("10-12")) {
 									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME);  //took out MEME
 								} else {
 									discussion.comment(MessageLib.NEW_DISCUSSION_WELCOME);
-								}
+								} */
 							}
 							
 							for(Comment comment : newcomments) {
